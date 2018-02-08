@@ -1,0 +1,24 @@
+Bütün senaryolar ciceksepeti_leveltestcase.xlsx uzantılı excel dosyasının içinde yer almaktadır.
+
+Proje lolaflora klasöründe yer almaktadır. Projeyi java dilinde kodladım. Şu an fiilen Java platformunda çalışmam ve bir önceki test otomasyonu projemi Java dilinde gerçekleştirdiğim için bu dili tercih ettim.
+
+Projenin derlenmesi içim maven kullandım. Test otomasyonu ile ilgili bütün kütüphaneler pom.xml dosyasında <dependencies> etiketinin altında yer almaktadır.
+
+Testlerin çalıştırılması için JUnit kütüphanesini kullandım. Ayrıca yazılan test case lerini bir Continious Integration
+tool unda çalıştırmak için TestSuite.java* ve TestRunner.java sınıflarını ekledim.
+TestSuite.java birden fazla test senaryolarını tek bir sınıfta çalıştırmaya yarıyor. TestRunner.java ise projeyi tek bir main() metoduna bağlayarak
+komut satırından çalıştırılmasını da sağlıyor. Bu esneklik herhangi bir CI tool una entegrasyonunda işe yaramaktadır.
+
+Test otomasyonunu kodlarken Page Object mimarisiyle kodladım. Sayfada ihtiyacım olan elementleri WebElement olarak tanımladım ve elementin sayfadaki gerekli
+durumlarını metotlar halinde yazdım. LoginTest sınıfında ise Page Object lerimi çağırarak selenium üzerinden aksiyonlar çalıştırdım,
+ilgili sayfa etmenlerine ve bunların durumlarına eriştim.
+
+LoginTest sınıfındaki metot isimleri "ciceksepeti_leveltestcase.xlsx" dosyasında "Level Test Case" sekmesinde yer alan "Test Case Id" leridir. Bu döküman üzerinden
+ilgili metod kolaylıkla kodlanabilmektedir. Ayrıca kod üzerinde sonradan değişiklik yapacak kişi,kişiler bu döküman üzerinden senaryolar hakkında detaylı bilgiler
+alabilirler.
+
+Ayrıca raporlama için "surefire" plugin i de yükledim. Projenin kök dosyasına gelip "mvn site" komutu girdiğiniz vakit
+test otomasyonu çalışmaya başlayacak ve sonuçlarını
+"target\site\surefire-report.html" dosya yoluna raporlayacaktır.
+NOT:
+Projeyi çalıştırmadan önce automation.properties dosyasındaki chromedriver.path in aldığı değeri kendi chromedriver executable dosyanızın bulunduğu dosya konumu ile değiştiriniz
